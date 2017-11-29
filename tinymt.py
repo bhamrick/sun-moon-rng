@@ -40,8 +40,8 @@ class TinyMT(object):
     def nextStateAsPID(self):
         # Return next state as a PID (32 bit integer)
         self.nextState()
-        tmp = self.state[0] + (self.state[2] >> 8)
-        return (tmp ^ self.state[3] ^ -(tmp & 0x1) & self.tmat) & 0xFFFFFFFF
+        tmp = (self.state[0] + (self.state[2] >> 8)) & 0xFFFFFFFF
+        return (tmp ^ self.state[3] ^ -(tmp & 0x1) & self.tmat)
 
     def nextStateAsInt(self, limit):
         # Return next state as an integer 0-limit
